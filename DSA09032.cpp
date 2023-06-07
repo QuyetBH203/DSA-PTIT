@@ -1,9 +1,8 @@
 #include<bits/stdc++.h>
-const int maxn=100005;
 
 using namespace std;
 int n,m; // so ban, so cap
-int parent[maxn],sz[maxn];
+int parent[100005],sz[100005];
 int ans;
 void init(int n){
 	for(int i=1;i<=n;i++){
