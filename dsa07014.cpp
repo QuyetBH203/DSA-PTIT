@@ -2,70 +2,54 @@
 
 using namespace std;
 
-bool check(char x)
-{
-    return isdigit(x);
-}
-void testCase()
-{
-    string s;
-    cin >> s;
-    stack<int> st;
-    for (int i = s.length() - 1; i >= 0; i--)
-    {
-        if (check(s[i]))
-        {
-            int s1 = s[i] - '0';
-            st.push(s1);
-        }
-        else
-        {
-            int s2 = st.top();
-            st.pop();
-            int s3 = st.top();
-            st.pop();
-            if (s[i] == '+')
-            {
-                int s4 = s2 + s3;
-                st.push(s4);
-            }
-            else if (s[i] == '-')
-            {
-                int s4 = s2 - s3;
-                st.push(s4);
-            }
-            else if (s[i] == '*')
-            {
-                int s4 = s2 * s3;
-                st.push(s4);
-            }
-            else if (s[i] == '/')
-            {
-                int s4 = s2 / s3;
-                st.push(s4);
-            }
-            else if (s[i] == '^')
-            {
-                int s4 = s2 ^ s3;
-                st.push(s4);
-            }
-            else if (s[i] == '%')
-            {
-                int s4 = s2 % s3;
-                st.push(s4);
-            }
-        }
-    }
-    cout << st.top() << endl;
-}
-
 int main()
 {
     int t;
     cin >> t;
     while (t--)
     {
-        testCase();
+        stack<int> st;
+        string s;
+        cin >> s;
+        for (int i = s.length() - 1; i >= 0; i--)
+        {
+            if (isdigit(s[i]))
+            {
+                st.push(s[i] - '0');
+            }
+            else if (s[i] == '+')
+            {
+                int s1 = st.top();
+                st.pop();
+                int s2 = st.top();
+                st.pop();
+                st.push(s2 + s1);
+            }
+            else if (s[i] == '-')
+            {
+                int s1 = st.top();
+                st.pop();
+                int s2 = st.top();
+                st.pop();
+                st.push(s1 - s2);
+            }
+            else if (s[i] == '*')
+            {
+                int s1 = st.top();
+                st.pop();
+                int s2 = st.top();
+                st.pop();
+                st.push(s2 * s1);
+            }
+            else
+            {
+                int s1 = st.top();
+                st.pop();
+                int s2 = st.top();
+                st.pop();
+                st.push(s1 / s2);
+            }
+        }
+        cout << st.top() << endl;
     }
-    return 0;
 }
