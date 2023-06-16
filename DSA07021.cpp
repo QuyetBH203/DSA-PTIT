@@ -15,7 +15,7 @@ void solve(){
         }else{
             st.pop();
             if(st.size() !=0){
-               res=max(res,i-st.top());
+               res=max(res,i-st.top());  
             }else{
                 st.push(i); // stack rong thi dan toi RTE
             }
